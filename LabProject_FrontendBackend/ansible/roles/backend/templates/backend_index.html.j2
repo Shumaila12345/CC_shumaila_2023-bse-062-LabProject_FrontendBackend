@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Backend {{ backend_name | default(inventory_hostname) }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      color: #667eea;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 10px;
+    }
+    .info {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-left: 4px solid #2196F3;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+    .info p {
+      margin: 5px 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🖥️ Backend Server: {{ backend_name | default(inventory_hostname) }}</h1>
+    <div class="info">
+      <p><strong>Hostname:</strong> {{ inventory_hostname }}</p>
+      <p><strong>Private IP:</strong> {{ ansible_default_ipv4.address | default('unknown') }}</p>
+      <p><strong>Server Name:</strong> {{ backend_name | default('unknown') }}</p>
+    </div>
+    <p>This is a backend HTTPD server serving requests through Nginx load balancer.</p>
+    <span class="badge">Active Backend</span>
+  </div>
+</body>
+</html>

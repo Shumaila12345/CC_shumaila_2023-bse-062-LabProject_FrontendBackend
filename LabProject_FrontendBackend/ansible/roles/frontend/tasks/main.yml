@@ -1,0 +1,18 @@
+---
+- name: Install nginx using amazon-linux-extras
+  shell: |
+    amazon-linux-extras install nginx1 -y
+  args:
+    creates: /usr/sbin/nginx
+
+- name: Enable and start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Deploy nginx frontend config
+  template:
+    src: nginx_frontend.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: Restart nginx

@@ -1,0 +1,9 @@
+.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.pem
+*.key
+.terraform.lock.hcl
+generated_hosts.ini
+*.backup
